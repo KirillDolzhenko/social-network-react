@@ -1,17 +1,23 @@
-import logo from './logo.svg'
+import './reset.css'
 import './App.css'
-import Aside from "./comp/Aside.jsx"
-import Header from "./comp/Header.jsx"
-import Profile from "./comp/Profile.jsx"
+import Aside from "./components/Aside/Aside.jsx"
+import Header from "./components/Header/Header.jsx"
+import Profile from "./components/Profile/Profile.jsx"
+import Messages from "./components/Messages/Messages.jsx"
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-function App() {
-  return (
+function App(props) {
+  return <BrowserRouter>
     <div className="app-wrapper">
       <Header />
       <Aside />
-      <Profile />
+      <Routes>
+        <Route path="/" element={<Profile />} />
+        <Route path="/profile/*" element={<Profile posts={props.posts} />} />
+        <Route path="/messages/*" element={<Messages messages={props.messages} dialogies={props.dialogies} />} />
+      </Routes>
     </div>
-  );
+  </BrowserRouter>;
 }
 
 export default App;

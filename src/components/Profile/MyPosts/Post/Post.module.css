@@ -1,0 +1,35 @@
+.post {
+    display: flex;
+    gap: 10px;
+}
+
+.post__image {
+    min-width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.post__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post__content {
+    display: flex;
+    gap: 3px;
+    flex-direction: column;
+}
+
+.post__username {
+    font-size: 1.5rem;
+}
+
+.post__text {
+    flex-grow: 1;
+}
+
+.post__like {
+    align-self: flex-start;
+}

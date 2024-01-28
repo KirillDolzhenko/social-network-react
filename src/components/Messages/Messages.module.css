@@ -1,0 +1,18 @@
+.messages {
+    display: flex;
+    gap: 30px;
+    padding: 10px;
+    border-radius: 15px;
+    min-height: 400px;
+    background: linear-gradient(22deg, rgba(0, 5, 133, 1) 0%, rgba(11, 90, 255, 1) 38%, rgba(31, 254, 255, 1) 100%);
+}
+
+.messages__content {
+    flex: 1 0 auto;
+    border-radius: 10px;
+    padding: 10px 10px 30px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(22deg, rgba(0, 5, 133, 1) 0%, rgba(11, 90, 255, 1) 38%, rgba(31, 254, 255, 1) 100%);
+}

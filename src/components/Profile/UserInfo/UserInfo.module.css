@@ -1,0 +1,40 @@
+.userInfo {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(140, 236, 255, 0.3);
+}
+
+.userInfo__desc {}
+
+.userInfo__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: white 2px solid;
+    transition: all 0.3s ease;
+}
+
+.userInfo__img:hover {
+    filter: drop-shadow(0px 0px 3px rgba(0, 5, 133, 0.7));
+}
+
+
+.userInfo__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.userInfo__nickname {
+    font-size: 1.7rem;
+    filter: drop-shadow(0px 0px 1px rgba(0, 5, 133, 0.7));
+    margin: 5px 0px;
+}
+
+.userInfo__text {
+    filter: drop-shadow(0px 0px 1px rgba(0, 5, 133, 0.7));
+}
