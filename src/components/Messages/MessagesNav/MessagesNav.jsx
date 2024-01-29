@@ -5,9 +5,16 @@ import { NavLink } from "react-router-dom"
 const MessagesNav = (props) => {
 
     let dialogiesMap = props.dialogies.map(el => {
-        return <li>
-            <NavLink to={"/messages/" + el["linkNum"]} className={Data => (Data.isActive ? c_css.active : "")}>{el["name"]}</NavLink>
-        </li>
+
+        if (el.linkNum != "1") {
+            return <li>
+                <NavLink to={"/messages/" + el["linkNum"]} className={Data => (Data.isActive ? c_css.active : "")}>{el["name"]}</NavLink>
+            </li>
+        } else {
+            return <li>
+                <NavLink to={"/messages/" + el["linkNum"]} className={Data => (Data.isActive || window.location.href.endsWith("messages") || window.location.href.endsWith("messages/") ? c_css.active : "")}>{el["name"]}</NavLink>
+            </li>
+        }
     })
 
     return (

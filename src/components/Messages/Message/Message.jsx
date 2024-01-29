@@ -1,10 +1,11 @@
 import React from "react"
 import c_css from "./Message.module.css"
 
+
 const Message = (props) => {
-    return (<section className={c_css.messages__message}>
+    return (<section className={`${c_css.messages__message} ${props.me ? c_css.messages__messageRight : ""}`}>
         <div className={c_css.messages__messagePicture}>
-            <img src="/images/profile/icon.jpg" alt="profile_picture" />
+            <img src={props.img} alt="profile_picture" />
         </div>
         <div className={c_css.messages__messageContent}>
             <h6 className={c_css.messages__messageName}>{props.name}</h6>

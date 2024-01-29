@@ -10,11 +10,11 @@ function App(props) {
   return <BrowserRouter>
     <div className="app-wrapper">
       <Header />
-      <Aside />
+      <Aside data={props.store.getState().aside} />
       <Routes>
-        <Route path="/" element={<Profile />} />
-        <Route path="/profile/*" element={<Profile posts={props.posts} />} />
-        <Route path="/messages/*" element={<Messages messages={props.messages} dialogies={props.dialogies} />} />
+        <Route path="/" element={<Profile store={props.store} />} />
+        <Route path="/profile/*" element={<Profile store={props.store} />} />
+        <Route path="/messages/*" element={<Messages data={props.store.getState().messagesPage} />} />
       </Routes>
     </div>
   </BrowserRouter>;

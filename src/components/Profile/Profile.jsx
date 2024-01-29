@@ -5,11 +5,11 @@ import UserInfo from "./UserInfo/UserInfo.jsx"
 import MyPosts from "./MyPosts/MyPosts.jsx"
 
 const Profile = (props) => {
-
+    // debugger
     return (<main className={c_css.profile}>
         <Banner />
         <UserInfo />
-        <MyPosts posts={props.posts} />
+        <MyPosts store={props.store} addPost={props.store.addPost.bind(props.store)} changeStateTextarea={props.store.changeStateTextarea.bind(props.store)} />
     </main>)
 }
 

@@ -5,11 +5,11 @@ import PostMake from "./PostMake/PostMake.jsx"
 
 const MyPosts = (props) => {
 
-    let postsMap = props.posts.map(el => <Post username={el.username} text={el.text} like={el.like} />);
+    let postsMap = props.store.getState().profilePage.posts.map(el => <Post username={el.username} text={el.text} like={el.like} />);
 
     return (<div className={c_css.posts}>
         <h3 className={c_css.posts__title}>My Posts</h3>
-        <PostMake />
+        <PostMake store={props.store} addPost={props.addPost} changeStateTextarea={props.changeStateTextarea} />
         <div className={c_css.posts__content}>
             {postsMap}
         </div>

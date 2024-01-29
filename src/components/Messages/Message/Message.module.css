@@ -4,6 +4,23 @@
     gap: 5px;
 }
 
+.messages__messageRight {
+    align-self: end;
+    flex-direction: row-reverse;
+    justify-content: end;
+}
+
+
+.messages__messageRight .messages__messageTime,
+.messages__messageRight .messages__messageName,
+.messages__messageRight .messages__messageText {
+    text-align: right;
+}
+
+.messages__messageRight .messages__messageTime {
+    margin-right: 10px;
+}
+
 .messages__messagePicture {
     min-width: 40px;
     height: 40px;
@@ -18,8 +35,8 @@
 }
 
 .messages__messageTime {
-    opacity: 0.7;
     display: block;
+    opacity: 0.7;
     font-size: 0.7rem;
     margin-bottom: 3px;
 }
