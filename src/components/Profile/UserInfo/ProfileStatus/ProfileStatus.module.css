@@ -1,0 +1,7 @@
+.input {
+    color: black
+}
+
+.userInfo__text {
+    filter: drop-shadow(0px 0px 1px rgba(0, 5, 133, 0.7));
+}

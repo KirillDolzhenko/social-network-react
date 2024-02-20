@@ -21,20 +21,14 @@
     filter: drop-shadow(0px 0px 3px rgba(0, 5, 133, 0.7));
 }
 
-
 .userInfo__img img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-
 .userInfo__nickname {
     font-size: 1.7rem;
     filter: drop-shadow(0px 0px 1px rgba(0, 5, 133, 0.7));
     margin: 5px 0px;
-}
-
-.userInfo__text {
-    filter: drop-shadow(0px 0px 1px rgba(0, 5, 133, 0.7));
 }

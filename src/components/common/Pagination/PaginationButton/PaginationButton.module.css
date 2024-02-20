@@ -1,0 +1,17 @@
+
+
+.button {
+    margin-top: 10px;
+    /* min-width: 20px;
+    height: 40px; */
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.button.active {
+    font-weight: 700;
+    background-color: blue;
+}

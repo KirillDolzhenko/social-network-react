@@ -1,9 +1,9 @@
 import React from "react"
 import c_css from "./Aside.module.css"
 import { NavLink } from "react-router-dom"
-import Friends from "./Friends/Friends.jsx"
+import FriendsContainer from "./Friends/FriendsContainer"
 
-const Aside = (props) => {
+const Aside = () => {
     return (<aside className={c_css.aside}>
         <nav>
             <ul className={c_css.aside__menu}>
@@ -12,6 +12,9 @@ const Aside = (props) => {
                 </li>
                 <li className={c_css.aside__el}>
                     <NavLink to="/messages" className={Data => (Data.isActive ? c_css.active : "")}>Messages</NavLink>
+                </li>
+                <li className={c_css.aside__el}>
+                    <NavLink to="/users" className={Data => (Data.isActive ? c_css.active : "")}>Users</NavLink>
                 </li>
                 <li className={c_css.aside__el}>
                     <NavLink to="/music" className={Data => (Data.isActive ? c_css.active : "")}>Music</NavLink>
@@ -24,7 +27,7 @@ const Aside = (props) => {
                 </li>
             </ul>
         </nav>
-        <Friends friends={props.data} />
+        <FriendsContainer />
     </aside >)
 }
 

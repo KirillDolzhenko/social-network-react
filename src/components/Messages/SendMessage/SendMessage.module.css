@@ -32,3 +32,17 @@
     background: linear-gradient(22deg, rgb(0, 33, 82) 0%, rgb(0, 112, 112) 100%);
     flex-grow: 1;
 }
+
+.message__input.error {
+    border: 2px solid red;
+}
+
+span.error {
+    color: red;
+}
+
+.input__container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

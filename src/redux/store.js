@@ -1,7 +1,7 @@
-import img1 from "./images/kolya.jpg";
-import img2 from "./images/nikita.jpg";
-import img3 from "./images/nameless.jpg";
-import img4 from "./images/kirill.jpg";
+
+import profileReducer from "./profileReducer";
+import messagesReducer from "./messagesReducer";
+
 
 let store = {
     _state: {
@@ -35,7 +35,8 @@ let store = {
                 { name: "Hoh", linkNum: 6 },
                 { name: "Santa Clause", linkNum: 7 },
                 { name: "Kolya", linkNum: 8 },
-            ]
+            ],
+            messageInput: ""
         },
         aside: [
             { name: "Kolya", img: img1, href: "https://youtube.com" },
@@ -52,23 +53,13 @@ let store = {
     getState() {
         return this._state
     },
-    addPost(text) {
-        this._state.profilePage.posts.push({
-            username: "Someone",
-            text: text,
-            like: 0
-        });
-        this._state.profilePage.postInput = "";
-        this.renderReactDom(this);
-    },
-    renderReactDom() {
-        console.log("F");
-    },
-    changeStateTextarea(text) {
-        this._state.profilePage.postInput = text;
-    },
     setReactDomRender(observer) {
-        this.renderReactDom = observer;
+        this._renderReactDom = observer;
+    },
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._renderReactDom(store);
     }
 }
 
