@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreacct_part2=self.webpackChunkreacct_part2||[]).push([[884],{2884:(t,s,e)=>{e.r(s),e.d(s,{default:()=>u});e(2791);var i=e(5032),a=e(4420),c=e(9266),l=e(7689),n=e(1659),h=e(184);let r=t=>t.isAuth?(0,h.jsx)(l.Fg,{to:"/profile"}):(0,h.jsxs)("div",{children:[(0,h.jsx)("h1",{className:i.Z.title,children:"Log In"}),(0,h.jsx)(n.Z,{onSubmit:s=>{(s=>{t.logIning(s)})(s)}})]});r=(0,a.$j)((t=>({isAuth:t.auth.isAuth})),{logIning:c.bC})(r);const u=r}}]);
+//# sourceMappingURL=884.5b43a2bb.chunk.js.map
