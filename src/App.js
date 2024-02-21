@@ -2,15 +2,18 @@ import './reset.css'
 import './App.css'
 import Aside from "./components/Aside/Aside.jsx"
 import HeaderContainer from "./components/Header/HeaderContainer.jsx"
-import Profile from "./components/Profile/Profile.jsx"
-import MessagesContainer from "./components/Messages/MessagesContainer"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Users from './components/Users/Users'
-import LoginContainer from './components/Login/LoginContainer'
 import { Provider, connect } from 'react-redux'
 import Loading from './components/Users/UsersBlock/Loading/Loading'
 import { setInitializedAuto } from "./redux/initializedReducer"
 import React, { useEffect } from 'react'
+import withSuspense from './components/withSuspense'
+
+let MessagesContainer = React.lazy(() => import("./components/Messages/MessagesContainer.jsx"));
+let Profile = React.lazy(() => import("./components/Profile/Profile.jsx"));
+let Users = React.lazy(() => import("./components/Users/Users.jsx"));
+let LoginContainer = React.lazy(() => import("./components/Login/LoginContainer.jsx"));
+
 
 let App = (props) => {
   
@@ -24,11 +27,21 @@ let App = (props) => {
               <HeaderContainer />
               <Aside />
               <Routes>
-                <Route path="/" element={<Profile />} />
-                <Route path="/profile/:userId?" element={<Profile />} />
-                <Route path="/messages/*" element={<MessagesContainer />} />
-                <Route path="/users/*" element={<Users />} />
-                <Route path="/login/*" element={<LoginContainer />} />
+                <Route path="/" 
+                      element={withSuspense(Profile)()}
+                      />
+                <Route path="/profile/:userId?" 
+                      element={withSuspense(Profile)()}
+                      />
+                <Route path="/messages/*" 
+                      element={withSuspense(MessagesContainer)()}
+                      />
+                <Route path="/users/*" 
+                      element={withSuspense(Users)()}
+                      />
+                <Route path="/login/*"
+                      element={withSuspense(LoginContainer)()}
+                      />
               </Routes>
             </div>
           </BrowserRouter>;
