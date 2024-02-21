@@ -2,7 +2,7 @@ import './reset.css'
 import './App.css'
 import Aside from "./components/Aside/Aside.jsx"
 import HeaderContainer from "./components/Header/HeaderContainer.jsx"
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import Loading from './components/Users/UsersBlock/Loading/Loading'
 import { setInitializedAuto } from "./redux/initializedReducer"
@@ -22,7 +22,7 @@ let App = (props) => {
   }, [])
 
   if (props.isInitialized) {
-    return <BrowserRouter>
+    return <HashRouter>
             <div className="app-wrapper">
               <HeaderContainer />
               <Aside />
@@ -44,7 +44,7 @@ let App = (props) => {
                       />
               </Routes>
             </div>
-          </BrowserRouter>;
+          </HashRouter>;
   } else {
     return <Loading />
   }
