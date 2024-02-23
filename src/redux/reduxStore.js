@@ -18,11 +18,11 @@ let reducers = combineReducers({
     initialized: initializedReducer
 })
 
-// const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// let store = createStore(reducers, composeEnchancer(applyMiddleware(thunk)));
+let store = createStore(reducers, composeEnchancer(applyMiddleware(thunk)));
 
-let store = createStore(reducers, applyMiddleware(thunk));
+// let store = createStore(reducers, applyMiddleware(thunk));
 
 
 export default store

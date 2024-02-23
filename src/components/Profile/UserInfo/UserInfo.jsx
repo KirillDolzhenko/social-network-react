@@ -2,8 +2,10 @@ import React from "react"
 import c_css from "./UserInfo.module.css"
 import Loading from "../../Users/UsersBlock/Loading/Loading"
 import ProfileStatusHook from "./ProfileStatus/ProfileStatusHook"
+import ProfilePicture from "./ProfilePicture/ProfilePicture"
 
 const UserInfo = (props) => {
+    // debugger
 
     if (props.userInfo) {
         return (
@@ -15,6 +17,7 @@ const UserInfo = (props) => {
                     <h2 className={c_css.userInfo__nickname}>{props.userInfo.fullName}</h2>
                     <p className={c_css.userInfo__text}>{props.userInfo.aboutMe ? props.userInfo.aboutMe : "Описание не задано"}</p>
                     <ProfileStatusHook aboutMe={props.userInfo.aboutMe} status={props.status} putStatus={props.putStatus} />
+                    <ProfilePicture />
                 </div>
             </div>
         )

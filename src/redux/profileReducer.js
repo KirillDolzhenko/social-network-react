@@ -1,7 +1,9 @@
-import userAPI, { statusAPI } from "../API/api";
+import userAPI, { pictureAPI, statusAPI } from "../API/api";
+import { changeImg } from "./authReducer";
 
 const CHANGE_STATE_TEXTAREA = "CHANGE-STATE-TEXTAREA";
 const CHANGE_STATE_STATUS = "CHANGE-STATE-STATUS";
+const CHANGE_STATE_PICTURE = "CHANGE-STATE-PICTURE";
 const ADD_POST = "ADD-POST";
 const SET_USER_INFO = "SET-USER-INFO";
 const REMOVE_USER_INFO = "REMOVE-USER-INFO";
@@ -54,6 +56,13 @@ const profileReducer = (state = stateDefault, action) => {
                 ...state,
                 status: action.status
             };
+        case CHANGE_STATE_PICTURE:
+                // console.log(action.data)
+                // console.log(state)
+            return {
+                ...state,
+                userInfo: {...state.userInfo, photos: action.data.data.data.photos}
+            };
         default:
             return state;
     }
@@ -79,6 +88,10 @@ export let changeStatus = (status) => ({
     type: CHANGE_STATE_STATUS,
     status,
 })
+export let changePicture = (data) => ({
+    type: CHANGE_STATE_PICTURE,
+    data,
+})
 export let removeUserInfo = () => ({
     type: REMOVE_USER_INFO
 })
@@ -91,6 +104,23 @@ export let setUser = (id) => async (dispatch) => {
     let data = await userAPI.getUser(id);
 
     dispatch(setUserInfo(data))
+}
+
+export let setPicture = (file) => async (dispatch) => {
+    let formData = new FormData();
+    formData.append("image", file);
+
+
+    // dispatch(removeUserInfo())
+
+    // console.log(formData)
+
+    let data = await pictureAPI.putUserPicture(formData);
+    // console.log(data)
+    // let data2 = await userAPI.getUser(data.data.userId);
+
+    dispatch(changeImg(data.data.data.photos.small))
+    dispatch(changePicture(data))
 }
 
 export let putStatus = (status) => async (dispatch) => {

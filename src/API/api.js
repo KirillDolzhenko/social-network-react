@@ -37,6 +37,12 @@ const userAPI = {
 
 export const authAPI = {
     logIn(info) {
+        console.log(info)
+        console.log("###")
+        console.log("###")
+        console.log("###")
+        console.log("###")
+        console.log("###")
         return instance.post(`auth/login`, info)
     },
     logOut() {
@@ -50,6 +56,16 @@ export const statusAPI = {
     },
     putUserStatus(status) {
         return instance.put(`/profile/status`, {status})
+    }
+}
+
+export const pictureAPI = {
+    putUserPicture(file) {
+        return instance.put(`/profile/photo`, file, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+        })
     }
 }
 

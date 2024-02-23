@@ -6,24 +6,30 @@ import { Navigate } from "react-router-dom";
 import { statusSelector, userAuthSelector, userInfoSelector } from "../../../selectors/userSelectors";
 
 class UserInfoContainer extends React.Component {
-    componentDidMount = () => { 
+    constructor(props) {
+        super(props);
+        this.userIdSearch = this.props.params.userId;
+    }
+
+    componentWillMount = () => { 
 
         let isAuth = this.props.userAuth.isAuth;
-        let userIdSearch = this.props.params.userId;
         
-        if (isAuth && !userIdSearch) {
-            userIdSearch = 2;
+        if (isAuth && !this.userIdSearch ) {
+            this.userIdSearch  = this.props.userAuth.id;
+        } else if (!isAuth && !this.userIdSearch ) {
+            this.userIdSearch  = 2;
         }
         
-        this.props.setUser(userIdSearch)
+        this.props.setUser(this.userIdSearch )
 
-        if (userIdSearch) {
-            this.props.getStatus(userIdSearch)
+        if (this.userIdSearch ) {
+            this.props.getStatus(this.userIdSearch )
         }
     }
 
     render() {
-        if (!(this.props.userAuth.isAuth) && !(this.props.params.userId)) {
+        if (!(this.userIdSearch)) {
             return <Navigate to="/login" />
         } else {
             return (
