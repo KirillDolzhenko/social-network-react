@@ -3,7 +3,7 @@ import c_css from "./UserInfo.module.css"
 import Loading from "../../Users/UsersBlock/Loading/Loading"
 import ProfileStatusHook from "./ProfileStatus/ProfileStatusHook"
 import ProfilePicture from "./ProfilePicture/ProfilePicture"
-import ProfileAdditionalInfo from "./ProfileStatus/ProfileAdditionalInfo/ProfileAdditionalInfo"
+import ProfileAdditionalInfo from "./ProfileAdditionalInfo/ProfileAdditionalInfo"
 
 const UserInfo = (props) => {
 

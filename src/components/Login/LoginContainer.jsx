@@ -8,15 +8,15 @@ import Login from "./Login";
 let LoginContainer = (props) => {
 
     let submitFunc = (data) => {
-        props.logIning(data)
+        props.logIning(data, props.auth.captchaTries)
     }
 
-    if (props.isAuth) {
+    if (props.auth.isAuth) {
         return <Navigate to="/profile"></Navigate>
     } else {
         return <div>
                     <h1 className={c_css.title}>Log In</h1>
-                    <Login onSubmit={(data) => {submitFunc(data)}} />
+                    <Login auth={props.auth} onSubmit={(data) => {submitFunc(data)}} />
                 </div>
     }
 
@@ -24,7 +24,7 @@ let LoginContainer = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        auth: state.auth
     }
 }
 

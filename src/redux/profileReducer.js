@@ -104,10 +104,6 @@ export let setUser = (id) => async (dispatch) => {
 
     let data = await userAPI.getUser(id);
 
-    console.log(88)
-    console.log(data)
-    console.log(88)
-
     dispatch(setUserInfo(data))
 }
 
@@ -115,13 +111,7 @@ export let setPicture = (file) => async (dispatch) => {
     let formData = new FormData();
     formData.append("image", file);
 
-    // dispatch(removeUserInfo())
-
-    // console.log(formData)
-
     let data = await pictureAPI.putUserPicture(formData);
-    // console.log(data)
-    // let data2 = await userAPI.getUser(data.data.userId);
 
     dispatch(changeImg(data.data.data.photos.small))
     dispatch(changePicture(data))
@@ -146,14 +136,12 @@ export let getStatus = (id) => async (dispatch) => {
 }
 
 export let putDesc = (desc, id) => async (dispatch) => {
-    // console.log(desc)
     
     let response = await profileAPI.putUserDesc(desc);
 
     if (response.data.resultCode == 0) {
         await dispatch(setUser(id));
         await dispatch(autoAuth());
-        console.log(response)
         return 0
     } else {
         let errorSpecific;
@@ -167,7 +155,6 @@ export let putDesc = (desc, id) => async (dispatch) => {
             let errorInput = response.data.messages[0];
 
             if (errorInput.includes("(")) {
-                console.log(errorInput)
 
                 let errorPath = errorInput
                     .split("(")[1]

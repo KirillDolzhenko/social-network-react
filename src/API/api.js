@@ -37,16 +37,13 @@ const userAPI = {
 
 export const authAPI = {
     logIn(info) {
-        console.log(info)
-        console.log("###")
-        console.log("###")
-        console.log("###")
-        console.log("###")
-        console.log("###")
         return instance.post(`auth/login`, info)
     },
     logOut() {
         return instance.delete(`auth/login`)
+    },
+    getCaptcha() {
+        return instance.get(`security/get-captcha-url`)
     }
 }
 

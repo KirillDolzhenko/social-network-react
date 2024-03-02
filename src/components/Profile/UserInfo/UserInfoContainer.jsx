@@ -9,7 +9,6 @@ let UserInfoContainer = (props) => {
     // debugger
     let [userAuthProfile, setUserAuthProfile] = useState(false);
     let [userIdSearch, setUserIdSearch] = useState(props.params.userId);
-    console.log(55, userIdSearch)
     // debugger;
 
     useEffect(() => {
