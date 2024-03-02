@@ -9,9 +9,10 @@ const ProfilePicture = (props) => {
         console.log(e.target.files[0])
         props.setPicture(e.target.files[0])
     }
-
-    return (
-        <input type="file" accept="image/*" onChangeCapture={(e) => onChangeCapture(e)} />
+    
+    return ( <>
+            { props.userAuthProfile && <input type="file" accept="image/*" onChangeCapture={(e) => onChangeCapture(e)} />}
+        </>
     )
 }
 

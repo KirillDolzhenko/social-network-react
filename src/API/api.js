@@ -69,4 +69,10 @@ export const pictureAPI = {
     }
 }
 
+export const profileAPI = {
+    putUserDesc(desc) {
+        return instance.put(`/profile`, desc)
+    }
+}
+
 export default userAPI

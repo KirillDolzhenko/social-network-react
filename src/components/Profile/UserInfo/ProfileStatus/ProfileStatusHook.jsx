@@ -24,11 +24,22 @@ const ProfileStatusHook = (props) => {
     }, [props.status])
 
     if (!stateIsEditing) {
-        return (
-           <p className={ c_css.userInfo__text }
-                onClick={ stateIsEditingSwitch }>
-                    { props.status ? props.status : "Описание не задано" }</p>
-        )
+        if (props.userAuthProfile) {
+            return (
+                <p className={ c_css.userInfo__text }
+                    onClick={ stateIsEditingSwitch } >
+                         { props.status ? props.status : "Статус не задан" }
+                </p>
+             )
+        } else {
+            return (
+                <p className={ c_css.userInfo__text }>
+                         { props.status ? props.status : "Статус не задан" }
+                </p>
+             )
+
+        }
+            
     } else {
         return (<input className={ c_css.input }
                         onChange={changeLocalStatus}

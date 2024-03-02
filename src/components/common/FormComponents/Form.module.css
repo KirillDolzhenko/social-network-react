@@ -1,0 +1,46 @@
+.input {
+    text-align: left;
+    width: 100%;
+    max-width: 250px;
+    padding: 2px 5px;
+    border-radius: 2px;
+    display: block;
+    color: black;
+    margin: 5px;
+}
+
+.checkbox {
+    text-align: left;
+    padding: 2px 5px;
+    display: block;
+    margin: 5px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 20px;
+}
+
+.button {
+    font-size: 0.9rem;
+    background-color: white;
+    color: black;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.input.error {
+    border: 2px solid red;
+}
+
+span.error {
+    display: block;
+    color: red;
+}
+
+.error_message {
+    color: red;
+    margin-bottom: 10px;
+}
+

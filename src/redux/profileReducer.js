@@ -1,5 +1,6 @@
-import userAPI, { pictureAPI, statusAPI } from "../API/api";
-import { changeImg } from "./authReducer";
+import { stopSubmit } from "redux-form";
+import userAPI, { pictureAPI, statusAPI, profileAPI} from "../API/api";
+import { autoAuth, changeImg } from "./authReducer";
 
 const CHANGE_STATE_TEXTAREA = "CHANGE-STATE-TEXTAREA";
 const CHANGE_STATE_STATUS = "CHANGE-STATE-STATUS";
@@ -103,13 +104,16 @@ export let setUser = (id) => async (dispatch) => {
 
     let data = await userAPI.getUser(id);
 
+    console.log(88)
+    console.log(data)
+    console.log(88)
+
     dispatch(setUserInfo(data))
 }
 
 export let setPicture = (file) => async (dispatch) => {
     let formData = new FormData();
     formData.append("image", file);
-
 
     // dispatch(removeUserInfo())
 
@@ -139,4 +143,71 @@ export let getStatus = (id) => async (dispatch) => {
     let response = await statusAPI.getUserStatus(id)
     
     dispatch(changeStatus(response.data))
+}
+
+export let putDesc = (desc, id) => async (dispatch) => {
+    // console.log(desc)
+    
+    let response = await profileAPI.putUserDesc(desc);
+
+    if (response.data.resultCode == 0) {
+        await dispatch(setUser(id));
+        await dispatch(autoAuth());
+        console.log(response)
+        return 0
+    } else {
+        let errorSpecific;
+        let errCommon = {
+                _error: `${
+                        response.data.messages.length ? response.data.messages[0] : "Common Error"
+                    }`
+        }
+
+        if (response.data.messages.length) {
+            let errorInput = response.data.messages[0];
+
+            if (errorInput.includes("(")) {
+                console.log(errorInput)
+
+                let errorPath = errorInput
+                    .split("(")[1]
+                    .split(")")[0];
+
+                let errorContent = errorInput
+                    .split("(")[0];
+                
+                function errorConstructor(path, content) {
+                    if (path.includes("->")) {
+                        let pathOne = path
+                            .split("->")[0]
+                            .toLowerCase();
+                        let pathTwo = path
+                            .split("->").length > 2 ? path.split("->").splice(1).join("->") : path.split("->")[1].toLowerCase();
+                        return {
+                            [pathOne]: errorConstructor(pathTwo, content)
+                        }
+                    } else {
+                        return {
+                            [path]: content
+                        }
+                    }    
+                }
+
+                errorSpecific = await errorConstructor(errorPath, errorContent)
+
+                if (errorInput.includes("->")) {
+                    errCommon = null;
+                }
+            }
+        }
+
+
+
+        dispatch(stopSubmit("userInfo", {
+            ...errorSpecific,
+            ...errCommon
+        }))
+        return Promise.reject("ERROR")
+        // return 1
+    }
 }

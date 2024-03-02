@@ -1,41 +1,76 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
-import { setUser, getStatus, putStatus } from "../../../redux/profileReducer";
+import { setUser, getStatus, putStatus, putDesc } from "../../../redux/profileReducer";
 import UserInfo from "./UserInfo";
 import { Navigate } from "react-router-dom";
 import { statusSelector, userAuthSelector, userInfoSelector } from "../../../selectors/userSelectors";
 
-class UserInfoContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.userIdSearch = this.props.params.userId;
-    }
+let UserInfoContainer = (props) => {
+    // debugger
+    let [userAuthProfile, setUserAuthProfile] = useState(false);
+    let [userIdSearch, setUserIdSearch] = useState(props.params.userId);
+    console.log(55, userIdSearch)
+    // debugger;
 
-    componentWillMount = () => { 
+    useEffect(() => {
 
-        let isAuth = this.props.userAuth.isAuth;
+        let isAuth = props.userAuth.isAuth;
+
+        if (isAuth && !userIdSearch) {
+            setUserIdSearch(props.userAuth.id);
+            setUserAuthProfile(true);
+        // } else if (!isAuth && !userIdSearch) {
+        //     setUserIdSearch(2);
+        } else if (isAuth && userIdSearch && props.userAuth.id === userIdSearch ) {
+            setUserAuthProfile(true);
+        }
+
+        if (userIdSearch) {
+            props.setUser(userIdSearch)
+        }
+        // isAuth && !userIdSearch
+        // setUserIdSearch(props.userAuth.id);
         
-        if (isAuth && !this.userIdSearch ) {
-            this.userIdSearch  = this.props.userAuth.id;
-        } else if (!isAuth && !this.userIdSearch ) {
-            this.userIdSearch  = 2;
+    }, [userIdSearch])
+
+    useEffect(() => {
+        if (!props.params.userId && !props.userAuth.isAuth) {
+            setUserIdSearch(undefined);
         }
+    }, [props.userAuth.isAuth])
+
         
-        this.props.setUser(this.userIdSearch )
 
-        if (this.userIdSearch ) {
-            this.props.getStatus(this.userIdSearch )
-        }
-    }
+        // if (userIdSearch) {
+        //     props.getStatus(userIdSearch)
+        // }
+        
 
-    render() {
-        if (!(this.userIdSearch)) {
-            return <Navigate to="/login" />
-        } else {
-            return (
-                <UserInfo userInfo={this.props.userInfo} status={this.props.status} getStatus={this.props.getStatus} putStatus={this.props.putStatus} />
-            )    
-        }
+    // useEffect(() => {
+
+    //     setUserAuthProfile(false);
+
+    //     let isAuth = props.userAuth.isAuth;
+        
+    //     if (isAuth && !userIdSearch) {
+    //         setUserAuthProfile(true);
+    //     } else if (isAuth && userIdSearch && props.userAuth.id == userIdSearch ) {
+    //         setUserAuthProfile(true);
+    //     }
+    // }, [props.userAuth.isAuth])
+
+    if (!(userIdSearch) && (!props.userAuth.isAuth)) {
+        return <Navigate to="/login" />
+    } else {
+        return (
+            <UserInfo userAuthProfile={userAuthProfile} 
+                userAuth={props.userAuth}
+                userInfo={props.userInfo}
+                putDesc={props.putDesc} 
+                status={props.status} 
+                getStatus={props.getStatus} 
+                putStatus={props.putStatus} />
+        )    
     }
 }
 
@@ -45,4 +80,4 @@ let mapStateToProps = (state) => ({
     userAuth: userAuthSelector(state)
 })
 
-export default connect(mapStateToProps, {setUser, getStatus, putStatus})(UserInfoContainer);
+export default connect(mapStateToProps, {setUser, getStatus, putStatus, putDesc})(UserInfoContainer);
