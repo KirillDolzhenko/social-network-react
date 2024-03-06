@@ -2,7 +2,7 @@ import './reset.css'
 import './App.css'
 import Aside from "./components/Aside/Aside.jsx"
 import HeaderContainer from "./components/Header/HeaderContainer.jsx"
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Switch, Routes, Route } from 'react-router-dom'
 import { Provider, connect } from 'react-redux'
 import Loading from './components/Users/UsersBlock/Loading/Loading'
 import { setInitializedAuto } from "./redux/initializedReducer"
@@ -27,21 +27,24 @@ let App = (props) => {
               <HeaderContainer />
               <Aside />
               <Routes>
-                <Route path="/" 
-                      element={withSuspense(Profile)()}
-                      />
-                <Route path="/profile/:userId?" 
-                      element={withSuspense(Profile)()}
-                      />
-                <Route path="/messages/*" 
-                      element={withSuspense(MessagesContainer)()}
-                      />
-                <Route path="/users/*" 
-                      element={withSuspense(Users)()}
-                      />
-                <Route path="/login/*"
-                      element={withSuspense(LoginContainer)()}
-                      />
+                  <Route path="/" 
+                        element={withSuspense(Profile)()}
+                        />
+                  <Route path="/profile/:userId?" 
+                        element={withSuspense(Profile)()}
+                        />
+                  <Route path="/messages/*" 
+                        element={withSuspense(MessagesContainer)()}
+                        />
+                  <Route path="/users/*" 
+                        element={withSuspense(Users)()}
+                        />
+                  <Route path="/login/*"
+                        element={withSuspense(LoginContainer)()}
+                        />
+                  <Route path="*"
+                        element={<div>404 ERROR</div>}
+                        />
               </Routes>
             </div>
           </HashRouter>;
